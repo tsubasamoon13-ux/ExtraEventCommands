@@ -5,6 +5,7 @@ Event Command Extensions for Stardew Valley
 A modding tool that adds custom event commands for clothing control, sprite rotation, layering, and temporary actor rendering.
 Fully compatible with Fashion Sense.
 
+
 ✨ Features
 
 Strip or restore farmer clothing (vanilla + Fashion Sense)
@@ -18,6 +19,7 @@ Draw temporary actors above all layers
 Tile-based or screen-based actor overlays
 
 Automatic cleanup when events end
+
 
 📜 Supported Commands
 Clothing Control
