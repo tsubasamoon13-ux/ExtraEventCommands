@@ -1,0 +1,10 @@
+{
+    "Name": "Extra Event Commands",
+    "Author": "tsubasamoon",
+    "Version": "1.0.0",
+    "Description": "Adds extra event commands that rotates the farmer, strips and restores clothing on the farmer including Fashion Sense, changes the Farmer to render above or below a specified NPC, and render a TemporaryActor above all objects.",
+    "UniqueID": "tsubasamoon.ExtraEventCommands",
+    "EntryDll": "Extra Event Commands.dll",
+    "MinimumApiVersion": "4.0.0",
+    "UpdateKeys": []
+}
