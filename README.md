@@ -6,7 +6,7 @@ A comprehensive suite of event commands for Stardew Valley modding that provides
 Features
 ---
 🔄 Farmer Rotation
-  Rotate the farmer sprite to any angle during events, with full compatibility for Fashion Sense clothing and accessories.
+Rotate the farmer sprite to any angle during events, with full compatibility for Fashion Sense clothing and accessories.
 Commands:
 
   rotateFarmer [degrees] - Rotate farmer by specified degrees (e.g., 180 for upside-down)
