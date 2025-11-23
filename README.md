@@ -1,7 +1,10 @@
 Extra Event Commands
 A comprehensive suite of event commands for Stardew Valley modding that provides advanced control over farmer and NPC rendering during cutscenes and events.
+
 ---
+
 Features
+---
 🔄 Farmer Rotation
 Rotate the farmer sprite to any angle during events, with full compatibility for Fashion Sense clothing and accessories.
 Commands:
