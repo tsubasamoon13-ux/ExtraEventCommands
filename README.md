@@ -60,7 +60,7 @@ farmerBelow Emily            # Farmer appears behind Emily
 
 ### 🎭 Temporary Actor Positioning
 
-Render temporary actors as UI overlays, guaranteed to appear on top of everything else.
+Render temporary actors as UI overlays, guaranteed to appear on top of everything else. Needs to use addTemporaryActor and place actor off-screen first to prevent double drawing. Main usage is for temporaryActors with large frames to not worry about vegation or furniture rendering over the frame.
 
 **Commands:**
 
@@ -79,7 +79,7 @@ Actors automatically warp off-screen to prevent double-drawing. Overlays reset w
 ## Installation
 
 1. Install [SMAPI](https://smapi.io/)
-2. Install [NoDress](https://www.nexusmods.com/stardewvalley/mods/16092) (required for clothing commands)
+2. Install NoDress by AlexGoD or similar mod (for truly naked farmer)
 3. Download this mod and extract to `Stardew Valley/Mods`
 4. Run the game through SMAPI
 
