@@ -1,63 +1,31 @@
-# ExtraEventCommands
+Extra Event Commands
+A comprehensive suite of event commands for Stardew Valley modding that provides advanced control over farmer and NPC rendering during cutscenes and events.
+---
+Features
+🔄 Farmer Rotation
+Rotate the farmer sprite to any angle during events, with full compatibility for Fashion Sense clothing and accessories.
+Commands:
 
-Event Command Extensions for Stardew Valley
+rotateFarmer [degrees] - Rotate farmer by specified degrees (e.g., 180 for upside-down)
+resetFarmerRotation - Reset rotation to normal
 
-A modding tool that adds custom event commands for clothing control, sprite rotation, layering, and temporary actor rendering.
-Fully compatible with Fashion Sense.
+Console Commands (for testing):
 
+rotate_farmer [degrees] - Test rotation in-game
+reset_rotation - Reset via console
 
-✨ Features
+👕 Clothing Control
+Strip and restore farmer clothing during events with granular control over individual items. Supports both vanilla clothing and Fashion Sense accessories.
+Commands:
 
-Strip or restore farmer clothing (vanilla + Fashion Sense)
+stripClothing [items...] - Remove all clothing, or specific items: shirt, pants, shoes, hat, sleeves, accessory, accessory0, accessory1, accessory2
+restoreClothing [items...] - Restore all clothing, or specific items
+strip [items...] - Short alias for stripClothing
+wear [items...] - Short alias for restoreClothing
+stripAll - Always strips everything (ignores arguments)
+wearAll - Always restores everything (ignores arguments)
 
-Render the farmer above/below NPCs
-
-Rotate the farmer sprite to any angle
-
-Draw temporary actors above all layers
-
-Tile-based or screen-based actor overlays
-
-Automatic cleanup when events end
-
-
-📜 Supported Commands
-Clothing Control
-
-stripClothing [items...]
-
-restoreClothing [items...]
-
-strip [items...]
-
-wear [items...]
-
-stripAll
-
-wearAll
-
-Layer Control
-
-farmerAbove [npcName]
-
-farmerBelow [npcName]
-
-resetLayers
-
-Farmer Rotation
-
-rotateFarmer [degrees]
-
-resetFarmerRotation
-
-Temporary Actor Overlays
-
-tempActorAtTile [actorName] [x] [y]
-
-tempActorAtScreen [actorName] [x] [y]
-
-resetTempActors
-
+---
 
 ⚠️ Notes
 
