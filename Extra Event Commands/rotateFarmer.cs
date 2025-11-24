@@ -18,12 +18,13 @@ namespace ExtraEventCommands
     /// 1. Tracking when the farmer is being rendered (via FarmerRenderer.draw or Fashion Sense's DrawManager.DrawLayers)
     /// 2. Intercepting all SpriteBatch.Draw calls during farmer rendering
     /// 3. Applying rotation transformation and adjusting positions to rotate around the farmer's center point
+    /// 4. Hiding the farmer's shadow during rotation (except at 0/360 degree angles)
     /// 
     /// Commands:
     /// - rotateFarmer [degrees]: Rotates the farmer by the specified degrees (e.g., 180 for upside-down)
-    ///   Rotation persists until reset or the event ends
+    ///   Rotation persists until reset or the event ends. Shadow is automatically hidden except at 0/360 degrees.
     /// 
-    /// - resetFarmerRotation: Resets farmer rotation to 0 degrees
+    /// - resetFarmerRotation: Resets farmer rotation to 0 degrees and restores shadow
     ///   Also happens automatically when warping or when events end
     /// 
     /// Console Commands (for testing):
@@ -65,6 +66,12 @@ namespace ExtraEventCommands
                     }),
                 prefix: new HarmonyMethod(typeof(rotateFarmer), nameof(FarmerRenderer_Draw_Prefix)),
                 postfix: new HarmonyMethod(typeof(rotateFarmer), nameof(FarmerRenderer_Draw_Postfix))
+            );
+
+            // Patch Farmer.DrawShadow to skip shadow when rotating (except at 0/360 degrees)
+            harmony.Patch(
+                original: AccessTools.Method(typeof(Farmer), "DrawShadow"),
+                prefix: new HarmonyMethod(typeof(rotateFarmer), nameof(Farmer_DrawShadow_Prefix))
             );
 
             // Patch SpriteBatch.Draw to modify rotation AND position
@@ -183,6 +190,30 @@ namespace ExtraEventCommands
             CurrentRotation = 0f;
             IsRotationActive = false;
             Monitor.Log("Reset farmer rotation", LogLevel.Info);
+        }
+
+        private static bool Farmer_DrawShadow_Prefix(Farmer __instance)
+        {
+            // Skip drawing shadow if this is the player and rotation is active AND not at a 0/360 degree angle
+            if (__instance == Game1.player && IsRotationActive)
+            {
+                // Calculate degrees from radians, normalize to 0-360 range
+                float degrees = MathHelper.ToDegrees(CurrentRotation) % 360f;
+
+                // Normalize negative angles to positive (e.g., -90 becomes 270)
+                if (degrees < 0)
+                {
+                    degrees += 360f;
+                }
+
+                // Show shadow only at 0 degrees (accounting for floating point precision)
+                // This handles 0, 360, 720, etc.
+                if (Math.Abs(degrees) > 0.01f && Math.Abs(degrees - 360f) > 0.01f)
+                {
+                    return false; // Skip shadow drawing
+                }
+            }
+            return true; // Draw shadow normally
         }
 
         private static void FarmerRenderer_Draw_Prefix(Farmer who, Vector2 position, Vector2 origin)
